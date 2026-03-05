@@ -81,14 +81,42 @@
     position: relative;
     z-index: 2;
     background: var(--black);
+    overflow: hidden;
+  }
+  .hero-tiles {
+    position: absolute; inset: 0;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-auto-rows: 140px;
+    gap: 8px;
+    padding: 8px;
+    transform: perspective(800px) rotateY(-8deg) rotateX(5deg) scale(1.3);
+    transform-origin: center center;
+    opacity: 0.12;
+    pointer-events: none;
+    animation: tileScroll 40s linear infinite;
+  }
+  @keyframes tileScroll {
+    0% { transform: perspective(800px) rotateY(-8deg) rotateX(5deg) scale(1.3) translateY(0); }
+    100% { transform: perspective(800px) rotateY(-8deg) rotateX(5deg) scale(1.3) translateY(-50%); }
+  }
+  .hero-tile {
+    border-radius: 8px;
+    display: flex; align-items: flex-end;
+    padding: 10px;
+    font-size: 10px; font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
   .hero::before {
     content: '';
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(224,0,26,0.14) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 80% 70%, rgba(224,0,26,0.06) 0%, transparent 50%);
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(224,0,26,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.4) 100%);
     pointer-events: none;
+    z-index: 1;
   }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
@@ -111,6 +139,7 @@
     font-weight: 700; line-height: 1.02;
     letter-spacing: -3px; max-width: 900px;
     animation: fadeUp 0.8s ease-out 0.1s both;
+    position: relative; z-index: 2;
   }
   .hero h1 .highlight {
     background: linear-gradient(135deg, var(--red-bright), var(--gold-light));
@@ -121,11 +150,13 @@
     font-size: 18px; color: var(--gray-400);
     max-width: 520px; margin-top: 24px; line-height: 1.7;
     animation: fadeUp 0.8s ease-out 0.25s both;
+    position: relative; z-index: 2;
   }
   .hero-actions {
     display: flex; gap: 16px; margin-top: 48px;
     flex-wrap: wrap; justify-content: center;
     animation: fadeUp 0.8s ease-out 0.4s both;
+    position: relative; z-index: 2;
   }
   .btn-primary {
     display: inline-flex; align-items: center; gap: 10px;
@@ -156,6 +187,7 @@
   .hero-stats {
     display: flex; gap: 64px; margin-top: 80px;
     animation: fadeUp 0.8s ease-out 0.55s both;
+    position: relative; z-index: 2;
   }
   .hero-stat { text-align: center; }
   .hero-stat .num {
@@ -610,7 +642,58 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">
+  <!-- Netflix-style scrolling tiles -->
+  <div class="hero-tiles">
+    <div class="hero-tile" style="background: linear-gradient(135deg, #8B0000, #FF4500)">Big Bass Splash</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #1a1a4e, #4a0080)">Starburst</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #004d00, #00cc44)">Gonzo's Quest</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #2a0a3d, #8B008B)">Mega Moolah</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #8B4513, #DAA520)">Book of Dead</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #00008B, #1E90FF)">Fishin' Frenzy</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #191970, #4169E1)">Rainbow Riches</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #8B0000, #DC143C)">Live Roulette</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #006400, #228B22)">Blackjack VIP</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #4B0082, #9370DB)">Eye of Horus</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #DAA520, #FFD700)">Gold Cash</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #000080, #4682B4)">Monopoly Live</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #8B0000, #B22222)">Deal or No Deal</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #006B3C, #00A86B)">Kong 3</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #301934, #800080)">Sweet Bonanza</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #B8860B, #CD853F)">Crazy Time</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #1B1B3A, #3D3D8E)">Lightning Dice</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #006400, #2E8B57)">Poker Stars</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #660000, #CC0000)">Baccarat Live</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #0D0D2B, #1A1A5E)">Aviator</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #8B4513, #D2691E)">Age of Gods</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #191919, #4d4d4d)">Mega Fire Blaze</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #003366, #336699)">Lightning Roulette</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #4A0E4E, #9B30FF)">Slots O'Gold</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #8B0000, #FF4500)">Big Bass Splash</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #1a1a4e, #4a0080)">Starburst</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #004d00, #00cc44)">Gonzo's Quest</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #2a0a3d, #8B008B)">Mega Moolah</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #8B4513, #DAA520)">Book of Dead</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #00008B, #1E90FF)">Fishin' Frenzy</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #191970, #4169E1)">Rainbow Riches</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #8B0000, #DC143C)">Live Roulette</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #006400, #228B22)">Blackjack VIP</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #4B0082, #9370DB)">Eye of Horus</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #DAA520, #FFD700)">Gold Cash</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #000080, #4682B4)">Monopoly Live</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #8B0000, #B22222)">Deal or No Deal</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #006B3C, #00A86B)">Kong 3</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #301934, #800080)">Sweet Bonanza</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #B8860B, #CD853F)">Crazy Time</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #1B1B3A, #3D3D8E)">Lightning Dice</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #006400, #2E8B57)">Poker Stars</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #660000, #CC0000)">Baccarat Live</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #0D0D2B, #1A1A5E)">Aviator</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #8B4513, #D2691E)">Age of Gods</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #191919, #4d4d4d)">Mega Fire Blaze</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #003366, #336699)">Lightning Roulette</div>
+    <div class="hero-tile" style="background: linear-gradient(135deg, #4A0E4E, #9B30FF)">Slots O'Gold</div>
+  </div>
+  <div class="hero-badge" style="position: relative; z-index: 2;">
     <span class="dot"></span>
     New Customer Offer — Live Now
   </div>
